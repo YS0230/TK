@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #f7f3ec;
+  --color-card: #fffdf9;
+  --color-ink: #1f1d1a;
+  --color-ink-soft: #5c564e;
+  --color-line: #e4dccf;
+  --color-aka: #b0342a;
+  --color-aka-soft: #f8ebe7;
+  --color-gold: #c9ab6e;
+  --color-gold-deep: #7a5f2a;
+  --color-gold-soft: #f3ead8;
+
+  --font-sans: 'Noto Sans TC', 'Noto Sans JP', 'PingFang TC', 'Hiragino Sans', 'Microsoft JhengHei',
+    system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(31 29 26 / 0.04), 0 10px 24px -14px rgb(31 29 26 / 0.18);
+
+  --animate-fade-in: fade-in 0.35s ease-out both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-aka);
+    outline-offset: 2px;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Hero：沒有圖片時使用的漸層視覺（替換方式見 README） */
+@utility hero-visual {
+  background-color: var(--color-ink);
+  background-image:
+    radial-gradient(circle at 84% 22%, rgb(176 52 42 / 0.95) 0 44px, transparent 45px),
+    linear-gradient(160deg, #2b2723 0%, #1f1d1a 55%, #3a2a24 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
