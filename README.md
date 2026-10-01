@@ -43,9 +43,25 @@ npm run preview  # 預覽建置結果（Service Worker 只在這裡與正式站�
    git push -u origin main
    ```
 
+接著二選一：
+
+### 方式 A：Blueprint（建議）
+
+專案根目錄已有 `render.yaml`，設定都寫在裡面。
+
+3. Render → **New** → **Blueprint**
+4. 選擇剛剛的 GitHub repository
+5. 確認偵測到 `tokyo-5days-trip` 服務 → **Apply**
+
+`render.yaml` 內容：Static Site、Build Command `npm ci && npm run build`、Publish Directory `dist`、
+Node 22，並設定 `sw.js` / `index.html` 不快取、`/assets/*` 長期快取。
+要改服務名稱（也就是 `xxx.onrender.com` 的網址）請改 `render.yaml` 的 `name`。
+
+### 方式 B：手動建立 Static Site
+
 3. Render → **New** → **Static Site**
 4. 選擇剛剛的 GitHub repository
-5. Build Command：`npm run build`
+5. Build Command：`npm run build`（若建置時找不到套件，改成 `npm ci && npm run build`）
 6. Publish Directory：`dist`
 7. **Deploy**
 

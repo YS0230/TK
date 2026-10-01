@@ -1,0 +1,22 @@
+# Render Blueprint：Render → New → Blueprint → 選擇這個 repository
+services:
+  - type: web
+    name: tokyo-5days-trip
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22.15.0
+    headers:
+      # Service Worker 與首頁不快取，重新部署後使用者才能拿到新版
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+      # 檔名含 hash 的打包檔可長期快取
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
