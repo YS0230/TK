@@ -1,7 +1,7 @@
 # Render Blueprint：Render → New → Blueprint → 選擇這個 repository
 services:
   - type: web
-    name: tokyo-5days-trip
+    name: TokyoGo
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
